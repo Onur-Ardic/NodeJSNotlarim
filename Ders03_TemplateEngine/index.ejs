@@ -1,0 +1,14 @@
+<h1><%= title %></h1>
+
+<div>
+  <% categories.forEach(category => { %>
+  <h1><%= category.name %></h1>
+  <p><%= category.description %></p>
+  <% }) %>
+</div>
+
+<div>
+  <% categories.forEach(category => { %> <% if (category.name == "Kategori 1") { %>
+  <h1>True</h1>
+  <% } %> <% }) %>
+</div>
