@@ -1,14 +1,20 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 
-app.use((req, res, next) => {
-  console.log('Middleware 1')
-  next()
+app.use('/blogs/:blogid/', (req, res) => {
+  // sıralama burada önemli en özel sayfa en üstte olmalı
+  console.log(req.params.blogid)
+  console.log(req.params.username)
+  res.sendFile(path.join(__dirname, 'views/users', 'blog-details.html'))
 })
 
-app.use((req, res) => {
-  console.log('Middleware 2')
-  res.end('Sonlandı')
+app.use('/blogs', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/users', 'blogs.html'))
+})
+
+app.use('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/users', 'index.html'))
 })
 
 app.listen(3000, () => {
