@@ -228,3 +228,115 @@ app.listen(3000, () => {
 })
 
 ```
+
+## Template Engine
+
+- Template Engine, HTML dosyalarını daha dinamik hale getirmek için kullanılır.
+
+```bash
+const express = require('express')
+const app = express()
+
+app.set('view engine', 'ejs')
+
+const path = require('path')
+
+app.use('/', (req, res) => {
+  res.render(path.join(__dirname, 'index'))
+})
+
+app.listen(3000, () => {
+  console.log('Server 3000 portunda çalışıyor')
+})
+
+// Hata yakalama için
+process.on('uncaughtException', (err) => {
+  console.error('Yakalanmamış istisna:', err)
+  process.exit(1)
+})
+
+```
+
+- Bu aşamadan sonra açtığımız dosyalar .html ile değiş .ejs ile açacağız bkz:index.ejs
+  EJS gibi şablon motorlarını kullanmamızın birkaç önemli nedeni vardır:
+
+  Dinamik içerik: EJS, HTML içine JavaScript kodunu entegre etmemizi sağlar. Bu sayede dinamik olarak değişen içeriği kolayca oluşturabiliriz.
+
+  Kod tekrarını azaltma: Şablonlar sayesinde ortak öğeleri (örneğin, header ve footer) bir kez tanımlayıp birden fazla sayfada kullanabiliriz.
+
+  Veri aktarımı: Sunucu tarafından gönderilen verileri şablonlara kolayca aktarabilir ve görüntüleyebiliriz.
+  Modülerlik: Büyük projeleri daha küçük, yönetilebilir parçalara bölmemize olanak tanır.
+
+  Okunabilirlik: HTML ve JavaScript kodunu birbirinden ayırarak, kodun daha okunabilir ve bakımı kolay hale gelmesini sağlar.
+
+  Performans: Şablonlar genellikle önceden derlenebilir, bu da uygulamanın daha hızlı çalışmasını sağlar.
+  Güvenlik: XSS (Cross-Site Scripting) gibi güvenlik açıklarına karşı koruma sağlayabilir.
+
+  Bu nedenlerle, EJS gibi şablon motorları web uygulamalarının geliştirilmesinde yaygın olarak kullanılmaktadır.
+
+* Örnek Kullanım - EJS
+
+```bash
+// index.js
+
+const express = require('express')
+const app = express()
+
+const data = {
+  title: 'Anasayfa',
+  description: 'Bu bir açıklama metnidir.',
+
+  categories: [
+    {
+      name: 'Kategori 1',
+      description: 'Bu bir açıklama metnidir.',
+    },
+    {
+      name: 'Kategori 2',
+      description: 'Bu bir açıklama metnidir.',
+    },
+  ],
+}
+
+app.set('view engine', 'ejs')
+
+const path = require('path')
+
+app.use('/', (req, res) => {
+  res.render(path.join(__dirname, 'index'), data)
+})
+
+app.listen(3000, () => {
+  console.log('Server 3000 portunda çalışıyor')
+})
+
+// Hata yakalama için
+process.on('uncaughtException', (err) => {
+  console.error('Yakalanmamış istisna:', err)
+  process.exit(1)
+})
+
+
+```
+
+```bash
+// index.ejs
+
+<h1><%= title %></h1>
+
+<div>
+  <% categories.forEach(category => { %>
+  <h1><%= category.name %></h1>
+  <p><%= category.description %></p>
+  <% }) %>
+</div>
+
+<div>
+<% categories.forEach(category => { %>
+ <% if (category.name == "Kategori 1") { %>
+   <h1>True</h1>
+ <% }  %>
+<% }) %>
+</div>
+
+```
