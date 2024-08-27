@@ -118,3 +118,27 @@ app.listen(3000, () => {
 })
 
 ```
+
+## Middleware
+
+- Middleware, bir HTTP isteğinin işlenmesi sırasında herhangi bir noktada çalışan kod parçacığıdır.
+
+```bash
+const express = require('express')
+const app = express()
+
+app.use((req, res, next) => {  // bir sonraki middleware'e geçmek için next() fonksiyonunu çağırmamız gerekiyor
+  next()
+  console.log('Middleware 1')
+})
+
+app.use((req, res) => {
+  console.log('Middleware 2')
+  res.end('Sonlandı')
+})
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000')
+})
+
+```

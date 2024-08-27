@@ -1,0 +1,27 @@
+# Node.js bağımlılıkları
+node_modules/
+
+# Günlük dosyaları
+npm-debug.log
+yarn-error.log
+
+# Ortam değişkenleri
+.env
+
+# IDE ve editör dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Derleme çıktıları
+/dist
+/build
+
+# Geçici dosyalar
+/tmp
+/temp
