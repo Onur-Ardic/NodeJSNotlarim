@@ -94,3 +94,27 @@ server.listen(8080, function () {
 })
 
 ```
+
+## ExpressJS Giriş
+
+- ExpressJS, Node.JS ile geliştirilen bir web frameworkudur. Express.js’nin sunduğu sınırsız HTTP yardımcı araçları ve katmanlar sayesinde sağlam bir API oluşturmak oldukça hızlı ve kolaydır.
+
+* Kurulum
+
+```bash
+npm install express
+----------------------
+//app.js
+
+const express = require('express')
+const app = express()
+
+app.use((req, res) => {
+  res.send('Hello World')
+})
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000')
+})
+
+```
