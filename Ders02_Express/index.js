@@ -1,8 +1,14 @@
 const express = require('express')
 const app = express()
 
+app.use((req, res, next) => {
+  console.log('Middleware 1')
+  next()
+})
+
 app.use((req, res) => {
-  res.send('Hello World')
+  console.log('Middleware 2')
+  res.end('Sonlandı')
 })
 
 app.listen(3000, () => {
