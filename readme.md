@@ -398,6 +398,23 @@ module.exports = connectionDB
 ## Database Tablolarına Ulaşma
 
 ```bash
+const configDB = require('../config')
+
+const mysql = require('mysql2')
+let connection = mysql.createConnection(configDB.db)
+
+connection.connect((err) => {
+  if (err) throw err
+  console.log('Connected to the MySQL server.')
+})
+
+module.exports = connection.promise()
+
+```
+
+- Burada ekrana basma işlemini yapabilmek için geriye bir promise yapısı döndererek then cath işlemleri ile veriyi istediğimiz yapıya getirdik
+
+```bash
 const express = require('express')
 const router = express.Router()
 const path = require('path')
