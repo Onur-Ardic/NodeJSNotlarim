@@ -8,6 +8,10 @@
   </head>
   <body>
     <h1>Anasayfa</h1>
-    <img src="/static/img/1.jpg" alt="" />
+    <% blogs.forEach(element => { %>
+    <h2><%= element.title %></h2>
+    <p><%= element.description %></p>
+    <img src="<%= element.image_url %>" alt="" />
+    <% }); %>
   </body>
 </html>
