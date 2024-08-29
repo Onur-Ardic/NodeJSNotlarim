@@ -1,11 +1,16 @@
-const configDB = require('../config')
+const mysql = require("mysql2");
+const config = require("../config");
 
-const mysql = require('mysql2')
-let connection = mysql.createConnection(configDB.db)
+let connection = mysql.createConnection(config.db);
 
-connection.connect((err) => {
-  if (err) throw err
-  console.log('Connected to the MySQL server.')
-})
+connection.connect(function(err) {
+    if(err) {
+        return console.log(err);
+    }
 
-module.exports = connection.promise()
+    console.log("mysql server bağlantısı yapıldı");
+});
+
+module.exports = connection.promise();
+
+// promise, async-await => async

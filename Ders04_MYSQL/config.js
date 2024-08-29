@@ -1,4 +1,4 @@
-const connectionDB = {
+const config = {
   db: {
     host: 'localhost',
     user: 'root',
@@ -7,4 +7,4 @@ const connectionDB = {
   },
 }
 
-module.exports = connectionDB
+module.exports = config

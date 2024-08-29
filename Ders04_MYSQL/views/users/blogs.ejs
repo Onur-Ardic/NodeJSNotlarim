@@ -13,11 +13,17 @@
                 <%- include("../partials/category-menu", categories)  %> 
             </div>
             <div class="col-md-9">
-                <h1 class="h3 mb-3"> <%= title %> </h1>
+                <h1 class="h3 mb-3">
+                    <%= title %>
+                </h1>
 
-                <% blogs.forEach(blog => { %>                    
-                        <%- include("../partials/blog-card", blog)  %> 
+                <% blogs.forEach(blog => { %>
+                    <%- include("../partials/blog-card", blog)  %> 
                 <% }) %>
+
+                <% if (blogs.filter(b => b.onay).length > 3) { %>
+                    <%- include("../partials/pagination")  %> 
+                <% } %>
              
             </div>
         </div>
@@ -25,3 +31,6 @@
 
 </body>
 </html>
+
+
+
