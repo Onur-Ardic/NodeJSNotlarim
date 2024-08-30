@@ -469,3 +469,53 @@ module.exports = router
 </html>
 
 ```
+
+## MYSQL CRUD İŞLEMLERİ
+
+- CREATE
+
+```bash
+
+// index.js
+
+app.use(express.urlencoded({extend : false})) // import et
+
+
+
+
+
+// admin.js
+router.post('/blog/create',async function (req, res) {
+  const title = req.body.title
+  const description = req.body.description
+  const image = req.body.image
+
+  try {
+    await db.execute("INSERT INTO blog (title, description, image) VALUES (?, ?, ?)", [title, description, image])
+  } catch (error) {
+    console.log(error);
+
+  }
+  res.redirect('/')
+})
+```
+
+- UPDATE
+
+```bash
+router.post('/blog/:blogid',async function (req, res) {
+  const blogid = req.params.blogid
+  const title = req.body.title
+  const description = req.body.description
+  const image = req.body.image
+
+  try {
+    await db.execute("UPDATE blog SET title = ?, description = ?, image = ?, categoryid = ? WHERE blogid=?" , [title, description, image, categoryid , blogid ])}
+  } catch (error) {
+    console.log(error);
+
+  }
+  res.redirect('/')
+
+)
+```
